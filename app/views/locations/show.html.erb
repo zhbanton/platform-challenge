@@ -15,22 +15,39 @@
   <%= @location.address %>
 </p>
 
-<div>
-  <h4>Price Level Associations</h4>
-  <% @location.price_level_associations.each do |pla| %>
-    <%= pla.price_level.name %> | <%= pla.order_type.name %> | <%= pla.day_part.try(:name) || '' %><br>
-  <% end %>
-</div>
-
-<div>
-  <h4>Day Parts</h4>
-  <ul>
-    <% @location.day_parts.each do |day_part| %>
-      <%= link_to day_part.name, location_day_part_path(@location, day_part) %> | <%= link_to 'edit', edit_location_day_part_path(@location, day_part) %> | <%= link_to 'destroy', location_day_part_path(@location, day_part), method: :delete, data: { confirm: 'Are you sure?' } %><br>
+<div class="panel panel-default">
+  <div class="panel-heading"><strong>Price Level Associations</strong></div>
+  <table class="table">
+    <tr>
+      <th>Price Level</th>
+      <th>Order Type</th>
+      <th>Day Part</th>
+    </tr>
+    <% @location.price_level_associations.each do |pla| %>
+      <tr>
+        <td><%= pla.price_level.name %></td>
+        <td><%= pla.order_type.name %></td>
+        <td><%= pla.day_part.try(:name) || '' %></td>
+      <tr>
     <% end %>
-  </ul>
-  <%= link_to 'New Day Part', new_location_day_part_path(@location) %>
+  </table>
 </div>
 
 <%= link_to 'Edit', edit_brand_location_path(@brand, @location) %> |
 <%= link_to 'Back', brand_path(@brand) %>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><strong>Day Parts</strong></div>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+    </tr>
+    <% @location.day_parts.each do |day_part| %>
+      <tr>
+        <td><%= link_to day_part.name, location_day_part_path(@location, day_part) %></td>
+        <td align="right"><%= edit_link(edit_location_day_part_path(@location, day_part)) %> <%= destroy_link(location_day_part_path(@location, day_part)) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="panel-footer"><%= link_to 'New Day Part', new_location_day_part_path(@location) %></div>
+</div>

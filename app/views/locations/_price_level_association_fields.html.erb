@@ -1,15 +1,11 @@
 <div class="nested-fields">
-  <div class="field">
+  <div class="input-group">
     <%= f.label :price_level_id %>
     <%= f.select :price_level_id, @brand.price_levels.map { |pl| [pl.name, pl.id] } %>
-  </div>
-  <div class="field">
     <%= f.label :order_type_id %>
     <%= f.select :order_type_id, @brand.order_types.map { |ot| [ot.name, ot.id] } %>
-  </div>
-  <div class="field">
     <%= f.label :day_part_id %>
     <%= f.select :day_part_id, @location.day_parts.map { |dp| [dp.name, dp.id] }, { include_blank: 'none'} %>
+    <%= link_to_remove_association 'remove price level association', f, class: 'btn btn-sm btn-danger' %>
   </div>
-  <%= link_to_remove_association 'remove price level association', f %>
 </div>

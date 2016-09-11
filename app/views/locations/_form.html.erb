@@ -16,25 +16,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="input-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="input-group">
     <%= f.label :address %><br>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="input-group">
     <%= f.fields_for :price_level_associations do |pla| %>
       <%= render 'price_level_association_fields', f: pla %>
     <% end %>
     <span class="links">
-      <%= link_to_add_association 'add price level association', f, :price_level_associations %>
+      <%= link_to_add_association 'add price level association', f, :price_level_associations, class: 'btn btn-sm btn-success' %>
     </span>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: 'btn btn-primary' %>
   </div>
 <% end %>

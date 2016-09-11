@@ -5,48 +5,76 @@
   <%= @brand.name %>
 </p>
 
-<div>
-  <h4>Locations</h4>
-  <ul>
-    <% @brand.locations.each do |location| %>
-      <%= link_to location.name, brand_location_path(@brand, location) %> | <%= location.address %> | <%= link_to 'edit', edit_brand_location_path(@brand, location) %> | <%= link_to 'destroy', brand_location_path(@brand, location), method: :delete, data: { confirm: 'Are you sure?' } %><br>
-    <% end %>
-  </ul>
-  <%= link_to 'New Location', new_brand_location_path(@brand) %>
-</div>
-
-<div>
-  <h4>Menu Items</h4>
-  <ul>
-    <% @brand.menu_items.each do |menu_item| %>
-      <%= link_to menu_item.name, brand_menu_item_path(@brand, menu_item) %> | <%= menu_item.description %> | <%= link_to 'edit', edit_brand_menu_item_path(@brand, menu_item) %> | <%= link_to 'destroy', brand_menu_item_path(@brand, menu_item), method: :delete, data: { confirm: 'Are you sure?' } %><br>
-    <% end %>
-  </ul>
-  <%= link_to 'New Menu Item', new_brand_menu_item_path(@brand) %>
-</div>
-
-<div>
-  <h4>Order Types</h4>
-  <ul>
-    <% @brand.order_types.each do |order_type| %>
-      <%= link_to order_type.name, brand_order_type_path(@brand, order_type) %> | <%= link_to 'edit', edit_brand_order_type_path(@brand, order_type) %> | <%= link_to 'destroy', brand_order_type_path(@brand, order_type), method: :delete, data: { confirm: 'Are you sure?' } %><br>
-    <% end %>
-  </ul>
-  <%= link_to 'New Order Type', new_brand_order_type_path(@brand) %>
-</div>
-
-<div>
-  <h4>Price Levels</h4>
-  <ul>
-    <% @brand.price_levels.each do |price_level| %>
-      <%= link_to price_level.name, brand_price_level_path(@brand, price_level) %> | <%= link_to 'edit', edit_brand_price_level_path(@brand, price_level) %> | <%= link_to 'destroy', brand_price_level_path(@brand, price_level), method: :delete, data: { confirm: 'Are you sure?' } %><br>
-    <% end %>
-  </ul>
-  <%= link_to 'New Price Level', new_brand_price_level_path(@brand) %>
-</div>
-
 <%= link_to 'New Price Calculation', new_brand_price_calculation_path(@brand) %><br>
 
 <%= link_to 'Edit', edit_brand_path(@brand) %> |
 <%= link_to 'Destroy', brand_path(@brand), method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', brands_path %>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><strong>Locations</strong></div>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+    </tr>
+    <% @brand.locations.each do |location| %>
+      <tr>
+        <td><%= link_to location.name, brand_location_path(@brand, location) %></td>
+        <td><%= location.address %></td>
+        <td align="right"><%= edit_link(edit_brand_location_path(@brand, location)) %> <%= destroy_link(brand_location_path(@brand, location)) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="panel-footer"><%= link_to 'New Location', new_brand_location_path(@brand) %></div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><strong>Menu Items</strong></div>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+    <% @brand.menu_items.each do |menu_item| %>
+      <tr>
+        <td><%= link_to menu_item.name, brand_menu_item_path(@brand, menu_item) %></td>
+        <td><%= menu_item.description %>
+        <td align="right"><%= edit_link(edit_brand_menu_item_path(@brand, menu_item)) %> <%= destroy_link(brand_menu_item_path(@brand, menu_item)) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="panel-footer"><%= link_to 'New Menu Item', new_brand_menu_item_path(@brand) %></div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><strong>Order Types</strong></div>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+    </tr>
+    <% @brand.order_types.each do |order_type| %>
+      <tr>
+        <td><%= link_to order_type.name, brand_order_type_path(@brand, order_type) %></td>
+        <td align="right"><%= edit_link(edit_brand_order_type_path(@brand, order_type)) %> <%= destroy_link(brand_order_type_path(@brand, order_type)) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="panel-footer"><%= link_to 'New Order Type', new_brand_order_type_path(@brand) %></div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading"><strong>Price Levels</strong></div>
+  <table class="table">
+    <tr>
+      <th>Name</th>
+    </tr>
+    <% @brand.price_levels.each do |price_level| %>
+      <tr>
+        <td><%= link_to price_level.name, brand_price_level_path(@brand, price_level) %></td>
+        <td align="right"><%= edit_link(edit_brand_price_level_path(@brand, price_level)) %> <%= destroy_link(brand_price_level_path(@brand, price_level)) %></td>
+      </tr>
+    <% end %>
+  </table>
+  <div class="panel-footer"><%= link_to 'New Price Level', new_brand_price_level_path(@brand) %></div>
+</div>
