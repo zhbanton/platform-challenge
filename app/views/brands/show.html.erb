@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @brand.name %>
+</p>
+
+<div>
+  <h4>Locations</h4>
+  <ul>
+    <% @brand.locations.each do |location| %>
+      <%= link_to location.name, brand_location_path(@brand, location) %> | <%= location.address %> | <%= link_to 'edit', edit_brand_location_path(@brand, location) %><br>
+    <% end %>
+  </ul>
+  <%= link_to 'New Location', new_brand_location_path(@brand) %>
+</div>
+
+<div>
+  <h4>Menu Items</h4>
+  <ul>
+    <% @brand.menu_items.each do |menu_item| %>
+      <%= link_to menu_item.name, brand_menu_item_path(@brand, menu_item) %> | <%= menu_item.description %> | <%= link_to 'edit', edit_brand_menu_item_path(@brand, menu_item) %><br>
+    <% end %>
+  </ul>
+  <%= link_to 'New Menu Item', new_brand_menu_item_path(@brand) %>
+</div>
+
+<div>
+  <h4>Order Types</h4>
+  <ul>
+    <% @brand.order_types.each do |order_type| %>
+      <%= link_to order_type.name, brand_order_type_path(@brand, order_type) %> | <%= link_to 'edit', edit_brand_order_type_path(@brand, order_type) %><br>
+    <% end %>
+  </ul>
+  <%= link_to 'New Order Type', new_brand_order_type_path(@brand) %>
+</div>
+
+<div>
+  <h4>Price Levels</h4>
+  <ul>
+    <% @brand.price_levels.each do |price_level| %>
+      <%= link_to price_level.name, brand_price_level_path(@brand, price_level) %> | <%= link_to 'edit', edit_brand_price_level_path(@brand, price_level) %><br>
+    <% end %>
+  </ul>
+  <%= link_to 'New Price Level', new_brand_price_level_path(@brand) %>
+</div>
+
+<%= link_to 'Edit', edit_brand_path(@brand) %> |
+<%= link_to 'Back', brands_path %>

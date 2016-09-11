@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @location.brand.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @location.name %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @day_part.name %>
+</p>
+
+<%= link_to 'Edit', edit_location_day_part_path(@location, @day_part) %> |
+<%= link_to 'Back', brand_location_path(@location.brand, @location) %>
