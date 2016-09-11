@@ -43,6 +43,6 @@ class LocationsController < ApplicationController
     end
 
     def location_params
-      params.require(:location).permit(:name, :address)
+      params.require(:location).permit(:name, :address, price_level_associations_attributes: [:id, :order_type_id, :day_part_id, :price_level_id, :_destroy])
     end
 end

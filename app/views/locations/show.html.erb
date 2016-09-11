@@ -16,6 +16,13 @@
 </p>
 
 <div>
+  <h4>Price Level Associations</h4>
+  <% @location.price_level_associations.each do |pla| %>
+    <%= pla.price_level.name %> | <%= pla.order_type.name %> | <%= pla.day_part.try(:name) || '' %><br>
+  <% end %>
+</div>
+
+<div>
   <h4>Day Parts</h4>
   <ul>
     <% @location.day_parts.each do |day_part| %>

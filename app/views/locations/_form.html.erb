@@ -24,6 +24,16 @@
     <%= f.label :address %><br>
     <%= f.text_field :address %>
   </div>
+
+  <div class="field">
+    <%= f.fields_for :price_level_associations do |pla| %>
+      <%= render 'price_level_association_fields', f: pla %>
+    <% end %>
+    <span class="links">
+      <%= link_to_add_association 'add price level association', f, :price_level_associations %>
+    </span>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

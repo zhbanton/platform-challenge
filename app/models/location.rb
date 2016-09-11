@@ -7,6 +7,8 @@ class Location
   has_many :day_parts, dependent: :destroy
   embeds_many :price_level_associations
 
+  accepts_nested_attributes_for :price_level_associations, allow_destroy: true, reject_if: :all_blank
+
   validates :name, presence: true
 
   # price_level_associations: [
