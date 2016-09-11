@@ -26,7 +26,7 @@
   <h4>Day Parts</h4>
   <ul>
     <% @location.day_parts.each do |day_part| %>
-      <%= link_to day_part.name, location_day_part_path(@location, day_part) %> | <%= link_to 'edit', edit_location_day_part_path(@location, day_part) %><br>
+      <%= link_to day_part.name, location_day_part_path(@location, day_part) %> | <%= link_to 'edit', edit_location_day_part_path(@location, day_part) %> | <%= link_to 'destroy', location_day_part_path(@location, day_part), method: :delete, data: { confirm: 'Are you sure?' } %><br>
     <% end %>
   </ul>
   <%= link_to 'New Day Part', new_location_day_part_path(@location) %>
