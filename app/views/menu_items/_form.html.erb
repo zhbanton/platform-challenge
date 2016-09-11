@@ -3,7 +3,7 @@
   <%= @brand.name %>
 </p>
 
-<%= form_for [@brand, @menu_item] do |f| %>
+<%= form_for setup_menu_item(@brand, @menu_item) do |f| %>
   <% if @menu_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@menu_item.errors.count, "error") %> prohibited this order type from being saved:</h2>
@@ -24,6 +24,14 @@
     <%= f.label :description %><br>
     <%= f.text_field :description %>
   </div>
+
+  <h4>Prices</h4>
+  <%= f.fields_for :prices do |pf| %>
+    <%= pf.object.price_level.name %>:
+    <%= pf.text_field :cost %>
+    <%= pf.hidden_field :price_level_id %>
+    <br>
+  <% end %>
 
   <div class="actions">
     <%= f.submit %>

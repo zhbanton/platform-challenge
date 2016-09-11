@@ -15,5 +15,12 @@
   <%= @menu_item.description %>
 </p>
 
+<p>
+  <h4>Prices</h4>
+  <% @menu_item.prices.each do |price| %>
+    <strong><%= price.price_level.name %>: </strong><%= price.cost %><br>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_brand_menu_item_path(@brand, @menu_item) %> |
 <%= link_to 'Back', brand_path(@brand) %>

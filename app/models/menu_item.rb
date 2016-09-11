@@ -6,6 +6,8 @@ class MenuItem
   belongs_to :brand
   embeds_many :prices
 
+  accepts_nested_attributes_for :prices
+
   validates :name, presence: true
 
   # prices: [
