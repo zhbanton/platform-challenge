@@ -1,0 +1,6 @@
+<% if @response[:success] == true %>
+  $('.js-price').html(<%= @response[:price] %>);
+<% else %>
+  $('.js-price').html('');
+  alert("<%= @response[:message] %>");
+<% end %>

@@ -1,6 +1,10 @@
 class DayPartsController < ApplicationController
   before_action :set_location
 
+  def index
+    render json: { day_parts: @location.day_parts }
+  end
+
   def show
     @day_part = @location.day_parts.find(params[:id])
   end

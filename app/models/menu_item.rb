@@ -22,9 +22,4 @@ class MenuItem
   # ]
   #
 
-  # def price(location, day_part, order_type)
-  #   price_level = location.price_level_associations.find_by(day_part_id: day_part, order_type_id: order_type).try(:price_level) || location.price_level_associations.find_by(day_part_id: day_part).price_level
-  #   price = prices.find(price_level: price_level).cost
-  # end
-
 end
