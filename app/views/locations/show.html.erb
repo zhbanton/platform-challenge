@@ -23,7 +23,7 @@
       <th>Order Type</th>
       <th>Day Part</th>
     </tr>
-    <% @location.price_level_associations.each do |pla| %>
+    <% @location.price_level_associations.includes(:price_level, :order_type, :day_part).each do |pla| %>
       <tr>
         <td><%= pla.price_level.name %></td>
         <td><%= pla.order_type.name %></td>
