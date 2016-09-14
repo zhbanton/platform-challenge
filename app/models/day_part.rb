@@ -6,6 +6,7 @@ class DayPart
   belongs_to :location
 
   validates :name, presence: true
+  validates :location, presence: true
 
   after_destroy :delete_price_level_associations
 

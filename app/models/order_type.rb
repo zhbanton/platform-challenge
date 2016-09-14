@@ -6,6 +6,7 @@ class OrderType
   belongs_to :brand
 
   validates :name, presence: true
+  validates :brand, presence: true
 
   after_destroy :delete_price_level_associations
 end

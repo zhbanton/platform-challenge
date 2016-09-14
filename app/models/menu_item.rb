@@ -9,6 +9,7 @@ class MenuItem
   accepts_nested_attributes_for :prices
 
   validates :name, presence: true
+  validates :brand, presence: true
 
   # prices: [
   #   {

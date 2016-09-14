@@ -9,6 +9,7 @@ class Location
 
   accepts_nested_attributes_for :price_level_associations, allow_destroy: true, reject_if: :all_blank
 
+  validates :brand, presence: true
   validates :name, presence: true
 
   # price_level_associations: [
