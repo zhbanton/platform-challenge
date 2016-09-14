@@ -1,6 +1,5 @@
 class DayPart
   include Mongoid::Document
-  include PriceLevelAssociationDeletion
   field :name, type: String
 
   belongs_to :location
@@ -10,7 +9,10 @@ class DayPart
 
   after_destroy :delete_price_level_associations
 
-  def brand
-    location.brand
-  end
+  private
+
+    def delete_price_level_associations
+      location.price_level_associations.where(day_part: self).destroy_all
+    end
+
 end
