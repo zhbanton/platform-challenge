@@ -1,12 +1,25 @@
 $(function() {
-  $('#location_id').change(function(event) {
-    var location_id = event.target.value;
-    $.get("/locations/" + location_id + "/day_parts").done(function(data) {
-      var newSelect = $("<select id=\"selectId\" name=\"selectName\" />");
-      data.day_parts.forEach(function(dayPart) {
-        $("<option />", {value: dayPart.id, text: dayPart.name}).appendTo(newSelect);
+  $('#brand_id').change(function(event) {
+    var brandId = event.target.value;
+    $.get('/brands/' + brandId + '/relations').done(function(data) {
+      ['location', 'order_type', 'menu_item', 'day_part'].forEach(function(modelName) {
+        replaceSelect(modelName, data);
       });
-      $('.js-select-day-part').html(newSelect);
     });
   });
+  $(document).on('change', '#location_id', function(event) {
+    var locationId = event.target.value;
+    $.get("/locations/" + locationId + "/day_parts").done(function(data) {
+      replaceSelect('day_part', data);
+    });
+  });
+
+  var replaceSelect = function(modelName, data) {
+    modelNameWithId = modelName + '_id';
+    var newSelect = $('<select id=' + modelNameWithId + ' name=' + modelNameWithId + '/>');
+    data[modelName + 's'].forEach(function(object) {
+      $("<option />", {value: object._id['$oid'], text: object.name}).appendTo(newSelect);
+    });
+    $('#' + modelNameWithId).replaceWith(newSelect);
+  };
 });

@@ -5,8 +5,6 @@
   <%= @brand.name %>
 </p>
 
-<%= link_to 'New Price Calculation', new_brand_price_calculation_path(@brand), class: 'btn btn-success' %><br>
-
 <%= link_to 'Edit', edit_brand_path(@brand) %> |
 <%= link_to 'Destroy', brand_path(@brand), method: :delete, data: { confirm: 'Are you sure?' } %> |
 <%= link_to 'Back', brands_path %>

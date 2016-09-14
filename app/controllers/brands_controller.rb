@@ -1,11 +1,21 @@
 class BrandsController < ApplicationController
-  before_action :set_brand, only: [:show, :edit, :update, :destroy]
+  before_action :set_brand, only: [:show, :relations, :edit, :update, :destroy]
 
   def index
     @brands = Brand.all
   end
 
   def show
+  end
+
+  def relations
+    locations = @brand.locations
+    render json: {
+      locations: present_relations(locations),
+      order_types: present_relations(@brand.order_types),
+      menu_items: present_relations(@brand.menu_items),
+      day_parts: present_relations(locations.first.day_parts)
+    }
   end
 
   def new
@@ -44,5 +54,14 @@ class BrandsController < ApplicationController
 
     def brand_params
       params.require(:brand).permit(:name)
+    end
+
+    def present_relations(relations)
+      relations.map do |relation|
+        {
+          _id: relation.id,
+          name: relation.name
+        }
+      end
     end
 end

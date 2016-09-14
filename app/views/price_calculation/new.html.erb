@@ -1,8 +1,9 @@
 <h4>Calculate Price</h4>
 
-<strong>Brand: </strong><%= @brand.name %>
-
 <%= form_tag({controller: 'price_calculation', action: 'create'}, method: 'post', class: 'js-price-calculation-form', remote: true) do %>
+  <%= label_tag(:brand_id, 'Brand') %>:
+  <%= select_tag :brand_id, options_for_select(@brands.map { |brand| [brand.name, brand.id]}) %><br>
+
   <%= label_tag(:location_id, 'Location') %>:
   <%= select_tag :location_id, options_for_select(@brand.locations.map { |location| [location.name, location.id]}) %><br>
 
@@ -13,7 +14,7 @@
   <%= select_tag :order_type_id, options_for_select(@brand.order_types.map { |ot| [ot.name, ot.id]}) %><br>
 
   <%= label_tag(:day_part, 'Day Part') %>
-  <span class="js-select-day-part"><%= select_tag :day_part_id, options_for_select(@brand.locations.first.day_parts.map { |dp| [dp.name, dp.id]}) %></span><br>
+  <%= select_tag :day_part_id, options_for_select(@brand.locations.first.day_parts.map { |dp| [dp.name, dp.id]}) %><br>
 
   <%= submit_tag "Calculate Price", class: 'btn btn-primary' %>
   <div>
