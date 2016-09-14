@@ -16,7 +16,9 @@
   <span class="js-select-day-part"><%= select_tag :day_part_id, options_for_select(@brand.locations.first.day_parts.map { |dp| [dp.name, dp.id]}) %></span><br>
 
   <%= submit_tag "Calculate Price", class: 'btn btn-primary' %>
-  <div class="js-price"></div>
+  <div>
+    Price: <span class="js-price"></span>
+  </div>
 <% end %>
 
 <%= link_to 'back', brand_path(@brand) %>

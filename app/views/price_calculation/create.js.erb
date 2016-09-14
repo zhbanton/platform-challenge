@@ -1,5 +1,5 @@
 <% if @response[:success] == true %>
-  $('.js-price').html(<%= @response[:price] %>);
+  $('.js-price').html("<%= @response[:price].format %>");
 <% else %>
   $('.js-price').html('');
   alert("<%= @response[:message] %>");

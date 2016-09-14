@@ -26,6 +26,8 @@ gem 'mongoid', '~> 5.1.0'
 # for nested attributes in forms
 gem "cocoon"
 
+gem 'money-rails'
+
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use ActiveModel has_secure_password

@@ -18,7 +18,7 @@
 <p>
   <h4>Prices</h4>
   <% @menu_item.prices.includes(:price_level).each do |price| %>
-    <strong><%= price.price_level.name %>: </strong><%= price.cost %><br>
+    <strong><%= price.price_level.name %>: </strong><%= price.cost.format %><br>
   <% end %>
 </p>
 
