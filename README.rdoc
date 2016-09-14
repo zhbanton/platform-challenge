@@ -1,28 +1,16 @@
-== README
+== Salido Platform Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<b>Live Demo:</b> https://aqueous-lake-65739.herokuapp.com/
 
-Things you may want to cover:
+As per the project specifications, I created 6 basic models (<b>Brands</b>, <b>Locations</b>, <b>Menu Items</b>, <b>Day Parts</b>, <b>Order Types</b> and <b>Price Levels</b>), each with their own set of CRUD actions. Locations, Menu Items, Order Types and Price Levels are nested under Brands, and Day Parts are nested under Locations.
 
-* Ruby version
+To solve the problem, I created two additional models: <b>Price Level Associations</b> and <b>Prices</b>.
 
-* System dependencies
+<b>Price Level Associations</b> are embedded under Locations and tie together a Location, a Day Part, an Order Type and a Price Level. They can be created/updated/deleted in the Location Form using Rails nested attributes and the cocoon gem which adds some basic javascript to handle nested forms (https://github.com/nathanvda/cocoon). I decided to use embedded documents here rather than making the Price Level Associations standalone documents because they shouldn't normally have to be accessed outside of their Location and it optimizes reads by eliminating an additional database call to fetch all the associated documents. It's not a huge optimization and honestly one of my motivations here was to experiment with this feature of Mongo as I've never used Mongo before. The one exception here is when a Price Level, Order Type or Day Part is deleted. Because they can only be accessed through their location, I had to write some slightly inefficent code to snake through the relations to delete the associated Price Level Association, but I figure the tradeoff is worth it because reads would be way more common than deletions in this application.
 
-* Configuration
+<b>Prices</b> are embedded under Menu Items and tie together a Menu Item and a Price Level and have a field for the cost of the Menu Item at a given Price Level. For easy storage and formatting and possible support for currency conversion down the line, I decided to store cost as an object with the price in cents and the currency using the money gem (https://github.com/RubyMoney/money-rails). Prices are created/updated/deleted in the Menu Item form, and I used a form helper to build Price objects for each of the Brand's Price Levels when the user is creating a new Menu Item. Using an embedded relationship here has the same tradeoffs as above. Additionally, I imagine that a user would frequently want to update multiple prices at once, so one benefit here is that operation only requires one trip to the database to save a single document.
 
-* Database creation
+On the homepage, the user can click the 'New Price Calculation' button to get the price of a Menu Item for a given Brand, Location, Day Part and Order Type. On the Backend, I used a helper class I called <b>PriceCalculator</b> which takes in these inputs and runs some queries to spit out a price. On the front-end, I wrote some (kind of hacky) jQuery to hit the backend via ajax and update the select tags when the user changes the Brand or Location.
 
-* Database initialization
+Finally, I used Rspec and FactoryGirl to create a few specs for the PriceCalculator and some of the deletion logic mentioned above.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
